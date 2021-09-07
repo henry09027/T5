@@ -2,7 +2,7 @@
 
 ## Introduction
 
-BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. This README provides an overview of how the BM25 model is used to complete a semantic textual similarity(STS) task on Chinese-based law corupus.
+T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks. As can be seen in the featured animation that it takes in text input from left for various NLP tasks and outputs the text for that respective task. The T5 model, pre-trained on C4, achieves state-of-the-art results on many NLP benchmarks while being flexible enough to be fine-tuned to a variety of important downstream tasks.
 
 ## Prerequiste
 * tensorflow pip installed
