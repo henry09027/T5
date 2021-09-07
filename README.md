@@ -54,7 +54,7 @@ Sample:
 }
 ```
 ## Model Workflow
-![alt text](https://github.com/henry09027/BM25/blob/main/photo/workflow_pic.png)
+![alt text](https://github.com/henry09027/BM25/blob/main/photo/Screen Shot 2021-09-07 at 1.56.47 PM.png)
 
 ## Finetune
 
@@ -62,7 +62,7 @@ The finetune stage is a supervised classification task with text-to-text query. 
 
 ## Inference
 
-After the mT5 model being finetuned with our classification dataset, we test the model performance on the testing set (10 percent of the Label Set). Each 外歸內容 will be paired with each and every 內規 in the 內規 library before forming text-to-text format queries. Note that outputs of text-to-text model such as our mT5 model are tokens that have the highest softmax scores in each calculations. As we need the similarity score of each query for document ranking, we apply the softmax function onto the score of the "_0" and "_1" token. We defined the similarity scores as the "_0" probabilities deducted by the "_1" probabilities. With these similarity scores, we can apply threshold and top k filters and calculate the accuracy and f1-scores.
+After the mT5 model being finetuned with our classification dataset, we test the model performance on the testing set (10 percent of the Label Set). Each 外歸內容 will be paired with each and every 內規 in the 內規 library before forming text-to-text format queries. Note that outputs of text-to-text model such as our mT5 model are tokens that have the highest softmax scores in each calculations. As we need the similarity scores of each query for document ranking, we apply the softmax function onto the score of the "_0" and "_1" token. We defined the similarity scores as the "_0" probabilities deducted by the "_1" probabilities. With these similarity scores, we can apply threshold and top k filters and calculate the accuracy and f1-scores.
 
 ## Method
 
