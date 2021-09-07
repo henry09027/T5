@@ -54,7 +54,7 @@ Sample:
 }
 ```
 ## Model Workflow
-![alt text](https://github.com/henry09027/BM25/blob/main/photo/Screen Shot 2021-09-07 at 1.56.47 PM.png)
+![alt text](https://github.com/henry09027/BM25/blob/main/photo/Screen%20Shot%202021-09-07%20at%201.56.47%20PM.png)
 
 ## Finetune
 
