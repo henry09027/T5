@@ -2,7 +2,7 @@
 
 ## Introduction
 
-T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks. As can be seen in the featured animation that it takes in text input from left for various NLP tasks and outputs the text for that respective task. The T5 model, pre-trained on C4, achieves state-of-the-art results on many NLP benchmarks while being flexible enough to be fine-tuned to a variety of important downstream tasks.
+T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks. As can be seen in the featured animation that it takes in text input from left for various NLP tasks and outputs the text for that respective task. The T5 model, pre-trained on C4, achieves state-of-the-art results on many NLP benchmarks while being flexible enough to be fine-tuned to a variety of important downstream tasks. As out task is semantic textual similarity on traditional Chinese dataset, we used the mT5 models, which are the mutiligual version of the T5 model coving 101 languages.
 
 ## Prerequiste
 * tensorflow pip installed
