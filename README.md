@@ -56,6 +56,14 @@ Sample:
 ## Model Workflow
 ![alt text](https://github.com/henry09027/BM25/blob/main/photo/workflow_pic.png)
 
+## Finetune
+
+The finetune stage is a supervised classification task with text-to-text query. 90 percent of the Label Set were translated from traditional to simplified Chinese with OpenCC, and made text-to-text format e.g. (STSB sentence1: 金融资产之转移 sentence2: 金融资产之转移). The sentence pairs with entailment relationships were labeled "_0" and the contradict ones labeled "_1". Note that the 外規內容 without a 應匹配的內規內容 will be paired with one of the BM25 calculated least similar sentence for the 內規 library before labeled "_1"
+
+## Inference
+
+After the mT5 model being finetuned with our classification dataset, we test the model performance on the testing set (10 percent of the Label Set). Each 外歸內容 will be paired with each and every 內規 in the 內規 library before forming text-to-text format queries. Note that outputs of text-to-text model such as our mT5 model are tokens that have the highest softmax scores in each calculations. As we need the similarity score of each query for document ranking, we apply the softmax function onto the score of the "_0" and "_1" token. We defined the similarity scores as the "_0" probabilities deducted by the "_1" probabilities. With these similarity scores, we can apply threshold and top k filters and calculate the accuracy and f1-scores.
+
 ## Method
 
 Firstly, call the BM25_generate_scores.py function, that will build the model with tokenized internal corpus and will pick out top 100 most similar label-internal pairs with their similarity scores calculated by the model. Secondly, the BM25_filter_and_index.py function does [min_threshold, max_threshold] X [min_k, max_k] model predictions filtering based on their similarity scores before converting predictions and answers to index for simplicity. Lastly, the accuracy, presicion, recall and f1-score of the individual threshold and top k filtered predictions can be calculated and saved to a csv table by the BM25_calculate_matrics.py function.  
