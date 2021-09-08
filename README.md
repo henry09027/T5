@@ -35,7 +35,7 @@ Sample:
 }
 ```
 * Internal Set \
-A list of internal corpus. \
+A list of internal corpus each with a unique code. \
 Sample:
 ```
 [
