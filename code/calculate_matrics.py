@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 from typing import Union, Dict, List
 
-def filter_predictions(prediction, k, threshold):
+def filter_predictions(prediction: List[Dict[str, Union[Dict[int, int], int]]], k: int, threshold: float) -> List[Dict[str, Union[List[int], int]]]:
     for dic in prediction:
        # filter threshold
         for key_ in dic['prediction'].copy():
@@ -18,7 +18,7 @@ def filter_predictions(prediction, k, threshold):
         dic['prediction'] = sorted(dic['prediction'], key=dic['prediction'].get,reverse=True)[:int(k)]
     return prediction
 
-def calculate_metrics(outcome):
+def calculate_metrics(outcome: List[Dict[str, Union[List[int], int]]]) -> float:
     tp, fn, tn, fp = 0, 0, 0, 0
     for row in outcome:
         ans_1 = row[ANS_1] # int > -1 if there is true answer, -1 if there is no answer
@@ -63,7 +63,7 @@ ANS_3  = 'answer_3'
 PRED = 'prediction'
 
 @click.command()
-@click.option('--prediction_directory', '-p', type=str, default='model_generations/google_base_0828_generations/')
+@click.option('--prediction_directory', '-p', type=str, default='model_generations/alan_turing_generations/')
 
 
 def main(prediction_directory: str):
@@ -106,8 +106,6 @@ def main(prediction_directory: str):
     output_filename = prediction_directory+'f1_score.csv'
     result_df=pd.DataFrame(result)
     result_df.to_csv(output_filename, encoding='utf-8')
-    console.print('Complete Calculations')
-
 
 if __name__ == '__main__':
     main()
