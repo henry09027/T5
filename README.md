@@ -60,7 +60,9 @@ After the mT5 model being finetuned with our classification dataset, we test the
 
 ## Method
 
-Firstly, call the BM25_generate_scores.py function, that will build the model with tokenized internal corpus and will pick out top 100 most similar label-internal pairs with their similarity scores calculated by the model. Secondly, the BM25_filter_and_index.py function does [min_threshold, max_threshold] X [min_k, max_k] model predictions filtering based on their similarity scores before converting predictions and answers to index for simplicity. Lastly, the accuracy, presicion, recall and f1-score of the individual threshold and top k filtered predictions can be calculated and saved to a csv table by the BM25_calculate_matrics.py function.  
+Firstly, the BM25_model.py and the generate_train_data.py were for generating train.json data for finetune from 90 percent of the Label Set. Therefored, need not to be called here as I already put the trained.json in ../data/data0716/my_finetune_data. 
+
+The remaining files were pretty straightforward. mt5_finetuning.py should be called first to finetuning our pretrained models. The finetuned models will be stored under the directory ./finetuned_models/. Then call mt5_generate_score.py that tests the label-test.json data on the finetuned model. The result will be stored under the directory ./model_generations/ as the format shown in the model generations section below. Finally, calculate_matrics.py will filter threshold and top-k on all the predictions from ./model_generations/ and output the final f1-score table.  
 
 ## Model Generations
 Model generation sample (all 內規 and answer pairs have been converted to indecies according to the internal dictionary to simplify the f1 calculation process):
@@ -73,7 +75,7 @@ Model generation sample (all 內規 and answer pairs have been converted to inde
 
 ## Version Control
 
-
+A series of debugging was conducted aiming to improve to peculiar low f1-score on our mT5 models. The earliest adjustments happened to the f1-score calculation matrics, as a more accurate Label Dataset with one to three paired 內規 answers as supposed to only one paired 內規 answer was released. The following was purely to varify whether the bad performance only happened on training data. It turned out that the f1-score was also only around 0.04 on training data. This proved that it the model wasn't overfitting the training data. The next two attempts were increasing the training epoch in the risk of model overfitting on training data happening. As shown in the results table, this act pushed the classification accuracy to 0.998 for the alan-turing model at validation stage. However, the f1-scores of the models remained undesireable. The next attempt was to avoid imbalanced training data. We have more training sentence pairs with contradicted relationship than the ones with entailed relationship. I got rid of some of the contradicted sentence pairs to make the contradiction-entailment ratio 1:1. On top of this, the negative samples for the training 外規內容 without paired answers was changed from randomly picked from the internal library to one of the BM25 calculated least 100  similar 內規. The final version I tried had a f1-score of 0.05 which is still below our expectations.
 
 ## Last Words
 
