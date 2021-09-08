@@ -218,14 +218,6 @@ def MT5Trainer(train_dataframe, dev_dataframe, source_text, target_text, model_p
       dev_targets_ids.append(source_ids)
       dev_targets_mask.append(source_mask)
   
-  #train_inputs_ids = torch.cat([train_inputs_ids], dim=0)
-  #train_inputs_mask = torch.cat([train_inputs_mask], dim=0)
-  #train_targets_ids = torch.cat([train_targets_ids], dim=0)
-    
-  #dev_inputs_ids = torch.cat([dev_inputs_ids], dim=0)
-  #dev_inputs_mask = torch.cat([dev_inputs_mask], dim=0)
-  #dev_target_ids = torch.cat([dev_targets_ids], dim=0)
-  
   train_inputs_ids = torch.stack(train_inputs_ids)
   train_inputs_mask = torch.stack(train_inputs_mask)
   train_targets_ids = torch.stack(train_targets_ids)
@@ -298,9 +290,10 @@ def MT5Trainer(train_dataframe, dev_dataframe, source_text, target_text, model_p
 @click.option('--learning-rate', '-lr', required=False, default=3e-5)
 @click.option('--batch-size', '-bs', required=False, default=16)
 @click.option('--model_name', required=False, default='alan-turing-institute/mt5-large-finetuned-mnli-xtreme-xnli')
-@click.option('--output-dir', '-o', default='finetuned_models/google_base_0811/')
-@click.option('--epochs', '-e', required=False, default=10)
+@click.option('--output-dir', '-o', default='finetuned_models/alan_turing/')
+@click.option('--epochs', '-e', required=False, default=6)
 @click.option('--device-no', '-d', default='cuda:0')
+
 def main(train_filename,
          learning_rate,
          batch_size,
