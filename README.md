@@ -2,7 +2,7 @@
 
 ## Introduction
 
-T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks. As can be seen in the featured animation that it takes in text input from left for various NLP tasks and outputs the text for that respective task. The T5 model, pre-trained on C4, achieves state-of-the-art results on many NLP benchmarks while being flexible enough to be fine-tuned to a variety of important downstream tasks. As out task is semantic textual similarity on traditional Chinese dataset, we used the mT5 models, which are the mutiligual version of the T5 model coving 101 languages.
+T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks. As can be seen in the featured animation that it takes in text input from left for various NLP tasks and outputs the text for that respective task. The T5 model, pre-trained on C4, achieves state-of-the-art results on many NLP benchmarks while being flexible enough to be fine-tuned to a variety of important downstream tasks. As our task was semantic textual similarity on traditional Chinese dataset, we used the pretrained mT5 model, which is the mutiligual version of the T5 model coving 101 languages.
 
 ## Prerequiste
 * tensorflow pip installed
@@ -38,14 +38,19 @@ Sample:
 A list of internal corpus. \
 Sample:
 ```
-{
-    "法規名稱": "1050323融資循環_捷智_V1@20170410 (1)",
-    "內文": "股東權益"
-},
-{
-    "法規名稱": "1050323融資循環_捷智_V1@20170410 (1-1)",
-    "內文": "目的："
-}
+[
+    {
+        "code": 0,
+        "text": "薪資之給付依規定日期每月發放。"
+    },
+    {
+        "code": 1,
+        "text": "關於本公司職工福利計劃之規劃、推動及監督事項。"
+    },
+    {
+        "code": 2,
+        "text": "其保管方式及儲存地點應確保資訊之保密及安全性，另經手人員對該資訊有保密之義務。"
+    },
 ```
 ## Model Workflow
 ![alt text](https://github.com/henry09027/T5/blob/main/photo/Screen%20Shot%202021-09-07%20at%201.56.47%20PM.png)
