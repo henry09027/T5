@@ -63,18 +63,18 @@ After the mT5 model being finetuned with our classification dataset, we test the
 Firstly, call the BM25_generate_scores.py function, that will build the model with tokenized internal corpus and will pick out top 100 most similar label-internal pairs with their similarity scores calculated by the model. Secondly, the BM25_filter_and_index.py function does [min_threshold, max_threshold] X [min_k, max_k] model predictions filtering based on their similarity scores before converting predictions and answers to index for simplicity. Lastly, the accuracy, presicion, recall and f1-score of the individual threshold and top k filtered predictions can be calculated and saved to a csv table by the BM25_calculate_matrics.py function.  
 
 ## Model Generations
-Sample:
+Model generation sample (all 內規 and answer pairs have been converted to indecies according to the internal dictionary to simplify the f1 calculation process):
 
-![alt text](https://github.com/henry09027/BM25/blob/main/photo/model_predictions.png)
+![alt text](https://github.com/henry09027/T5/blob/main/photo/Screen%20Shot%202021-09-08%20at%209.58.12%20PM.png)
 
-Sample final f1-score table:
+## Results
 
-![alt text](https://github.com/henry09027/BM25/blob/main/photo/result_table.png)
+![alt text](https://github.com/henry09027/T5/blob/main/photo/image.png)
 
-## Result
+## Version Control
 
-| Model         | f1@ threshold: 1 | f1@ threshold: 5 | f1@ threshold: 10| f1@ threshold: 20|
-| ------------- |:----------------:|:----------------:|:----------------:|:----------------:|
-| BM25          |    0.1994 (7.5)  |    0.3300 (5)    |    0.3940 (5)    |    0.4368 (5)    |
 
-*f1 scores on the data0716/label-test.json dataset.
+
+## Last Words
+
+Our finetune work got the best result on the mT5-large model trained by the alan-turing institute (https://huggingface.co/alan-turing-institute/mt5-large-finetuned-mnli-xtreme-xnli). Therefore, our primary focus will be on this pretrained model. With that being said, the greatest f1-score we were able to reach was around 0.05 at k being 20, compared to 0.43 of the BM25 model. The undesirable low f1-score seemed to be only happening on the mT5 model but not the T5 model. Similar work was shown in the “Document Ranking with a Pretrained Sequence-to-Sequence Model” paper (https://aclanthology.org/2020.findings-emnlp.63.pdf), in which the T5 model showed better performance compared to a BM25 model and BM25+BERT-Large model (BM25 bag of word retrieval followed by a BERT reranker) on document ranking tasks.
