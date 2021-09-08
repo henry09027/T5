@@ -46,8 +46,8 @@ def seq_to_seq(external: str, internal:str):
 @click.option('--start', '-s', type=int, default=0)
 @click.option('--end', '-e', type=int, default=100)
 @click.option('--batch_size', '-b', type=int, default=32)
-@click.option('--model_name', '-m', type=str, default='finetuned_models/google_base_0810/model_files')
-@click.option('--output_dir', '-o', type=str, default='model_generations/google_base_0828_generations/')
+@click.option('--model_name', '-m', type=str, default='finetuned_models/alan_turing/model_files')
+@click.option('--output_dir', '-o', type=str, default='model_generations/alan_turing_generations/')
 @click.option('--device', '-d', type=str, default='cuda:0')
 
 
